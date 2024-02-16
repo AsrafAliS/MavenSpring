@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Details</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Employee Address</th>
+                <th>Phone Number</th>
+                <th>Salary</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Use Thymeleaf to iterate over employee data -->
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.employeename}"></td>
+                <td th:text="${employee.employeeaddress}"></td>
+                <td th:text="${employee.employeephone}"></td>
+                <td th:text="${employee.employeeSalary}"></td>
+			<td><a href="#" th:href="@{update(id=${employee.id})}">Update</a></td>
+			<td><a href="#" th:href="@{Delete(id=${employee.id})}">Delete</a></td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <form action="addrecord" method="get">
+    <button type="submit">Add Record</button>
+    </form>
+</body>
+</html>
